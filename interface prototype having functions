@@ -1,0 +1,88 @@
+import java.util.Scanner;
+
+// Interface
+interface Shape {
+    double area();
+    double perimeter();
+}
+
+// Circle class
+class Circle implements Shape {
+    double r;
+
+    Circle(double r) {
+        this.r = r;
+    }
+
+    public double area() {
+        return Math.PI * r * r;
+    }
+
+    public double perimeter() {
+        return 2 * Math.PI * r;
+    }
+}
+
+// Rectangle class
+class Rectangle implements Shape {
+    double l, b;
+
+    Rectangle(double l, double b) {
+        this.l = l;
+        this.b = b;
+    }
+
+    public double area() {
+        return l * b;
+    }
+
+    public double perimeter() {
+        return 2 * (l + b);
+    }
+}
+
+// Main class (menu driven)
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int ch;
+
+        do {
+            System.out.println("\n1. Circle");
+            System.out.println("2. Rectangle");
+            System.out.println("3. Exit");
+            System.out.print("Enter choice: ");
+            ch = sc.nextInt();
+
+            switch (ch) {
+                case 1:
+                    System.out.print("Enter radius: ");
+                    double r = sc.nextDouble();
+                    Circle c = new Circle(r);
+                    System.out.println("Area = " + c.area());
+                    System.out.println("Perimeter = " + c.perimeter());
+                    break;
+
+                case 2:
+                    System.out.print("Enter length: ");
+                    double l = sc.nextDouble();
+                    System.out.print("Enter breadth: ");
+                    double b = sc.nextDouble();
+                    Rectangle rec = new Rectangle(l, b);
+                    System.out.println("Area = " + rec.area());
+                    System.out.println("Perimeter = " + rec.perimeter());
+                    break;
+
+                case 3:
+                    System.out.println("Thank you!");
+                    break;
+
+                default:
+                    System.out.println("Wrong choice!");
+            }
+
+        } while (ch != 3);
+
+        sc.close();
+    }
+}
